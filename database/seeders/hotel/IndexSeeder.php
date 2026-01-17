@@ -21,6 +21,7 @@ class IndexSeeder extends Seeder
         DB::table('hotel.hoteles')->truncate();
         DB::table('hotel.niveles')->truncate();
         DB::table('hotel.personas')->truncate();
+        DB::table('hotel.tarifas')->truncate();
 
 
         $this->call([
@@ -31,6 +32,7 @@ class IndexSeeder extends Seeder
             HotelSeeder::class,
             NivelSeeder::class,
             PersonaSeeder::class,
+            TarifaSeeder::class,
         ]);
     }
 }

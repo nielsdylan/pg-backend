@@ -3,28 +3,28 @@
 namespace App\Http\Controllers\Hotel\Configuration;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hotel\Tarifa;
+use App\Models\Hotel\Habitacion;
 use Illuminate\Http\Request;
 
-class TarifaController extends Controller
+class HabitacionController extends Controller
 {
     //
     public function lista()
     {
-        $lista = Tarifa::orderBy('id','asc')->get();
+        $lista = Habitacion::orderBy('id','asc')->get();
         return response()->json([
             "data" => $lista
         ], 200);
     }
     public function ver($id)
     {
-        $data = Tarifa::find($id);
+        $data = Habitacion::find($id);
 
         return response()->json($data, 200);
     }
     public function guardar(Request $request)
     {
-        $data = Tarifa::firstOrNew(
+        $data = Habitacion::firstOrNew(
             ['id' => $request->id],
         );
         $data->nombre = $request->nombre;
@@ -39,7 +39,7 @@ class TarifaController extends Controller
     }
     public function cambiarEstado(Request $request)
     {
-        $data = Tarifa::find($request->id);
+        $data = Habitacion::find($request->id);
         $data->estado = $request->estado;
         $data->save();
         return response()->json([
@@ -51,7 +51,7 @@ class TarifaController extends Controller
     }
     public function eliminar(Request $request)
     {
-        $data = Tarifa::find($request->id);
+        $data = Habitacion::find($request->id);
         $data->estado = 2;
         $data->delete();
         return response()->json([

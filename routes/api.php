@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Hotel\Configuration\CategoriaController;
+use App\Http\Controllers\Hotel\Configuration\HabitacionController;
 use App\Http\Controllers\Hotel\Configuration\NivelController;
+use App\Http\Controllers\Hotel\Configuration\TarifaController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +40,20 @@ Route::middleware([JwtMiddleware::class])->group(function(){
                 Route::post('/guardar', [CategoriaController::class, 'guardar']);
                 Route::post('/cambiarEstado', [CategoriaController::class, 'cambiarEstado']);
                 Route::post('/eliminar', [CategoriaController::class, 'eliminar']);
+            });
+            Route::prefix('tarifas')->group(function(){
+                Route::get('/lista', [TarifaController::class, 'lista']);
+                Route::get('/ver/{id}', [TarifaController::class, 'ver']);
+                Route::post('/guardar', [TarifaController::class, 'guardar']);
+                Route::post('/cambiarEstado', [TarifaController::class, 'cambiarEstado']);
+                Route::post('/eliminar', [TarifaController::class, 'eliminar']);
+            });
+            Route::prefix('habitaciones')->group(function(){
+                Route::get('/lista', [HabitacionController::class, 'lista']);
+                Route::get('/ver/{id}', [HabitacionController::class, 'ver']);
+                Route::post('/guardar', [HabitacionController::class, 'guardar']);
+                Route::post('/cambiarEstado', [HabitacionController::class, 'cambiarEstado']);
+                Route::post('/eliminar', [HabitacionController::class, 'eliminar']);
             });
         });
     });
